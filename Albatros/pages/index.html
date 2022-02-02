@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ALBATROS Restaurant</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles/main.css" />
+  </head>
+  <body>
+    <div id="parallax"><h2>RESTORAN ALBATROS</h2></div>
+
+    <div class="container">
+      <h2>Rezervacije:</h2>
+      <br />
+      <div class="row" id="table-container"></div>
+
+      <br />
+
+      <div class="row">
+        <div class="col right">
+          <a
+            class="waves-effect blue-grey waves-light btn-large pulse"
+            onclick="restaurant.report()"
+            ><i class="material-icons right">arrow_forward</i
+            ><strong>ZAVRŠI DAN</strong>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="../scripts/models.js"></script>
+    <script src="../scripts/initialization.js"></script>
+    <script src="../scripts/app.js"></script>
+  </body>
+</html>

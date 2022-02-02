@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ALBATROS Menu</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles/orderStyle.css" />
+  </head>
+  <body>
+    <div class="container">
+      <table class="highlight centered responsive-table">
+        <thead>
+          <tr>
+            <th>Menu item:</th>
+            <th>Ingredients:</th>
+            <th>Description:</th>
+            <th>Price:</th>
+            <th>Quantity:</th>
+          </tr>
+        </thead>
+
+        <tbody></tbody>
+      </table>
+
+      <br /><br /><br />
+      <h3>Custom jela:</h3>
+      <br /><br /><br />
+
+      <div class="row">
+        <div id="card-container"></div>
+
+        <div class="col m6">
+          <div class="card">
+            <div class="card-content">
+              <a
+                class="btn-floating btn-large waves-effect green"
+                onclick="addNewCustomDishCard()"
+                ><i class="material-icons">add</i></a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br /><br /><br />
+
+      <div class="row">
+        <a class="waves-effect waves-light btn-large" id="submit-btn"
+          ><i class="material-icons right">send</i>submit</a
+        >
+      </div>
+    </div>
+  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="../scripts/models.js"></script>
+  <script src="../scripts/order.js"></script>
+</html>

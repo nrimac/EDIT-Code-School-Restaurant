@@ -1,0 +1,19 @@
+h3 {
+  font-size: 60px;
+  background: #eee;
+  padding: 8px 24px;
+  border-radius: 16px;
+  text-align: center;
+}
+
+.card-content {
+  text-align: center;
+}
+
+#submit-btn {
+  float: right;
+}
+
+.close-btn {
+  float: right;
+}
