@@ -10,14 +10,6 @@ class Table {
       CustomMeals: [],
     };
     this.Active = false;
-    // this.orderFood = function (numberOfPeople) {
-    //   //ispis menija i spremanje narudzbi
-    //   this.NumberOfPeople = numberOfPeople;
-    //   sessionStorage.setItem("restaurant", JSON.stringify(restaurant));
-    //   sessionStorage.setItem("activeTableId", this.Id);
-
-    //   location.href = "../pages/order.html";
-    // };
   }
 
   // orderFood(numberOfPeople) {

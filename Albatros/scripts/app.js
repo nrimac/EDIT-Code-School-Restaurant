@@ -21,7 +21,7 @@ function makeTableUnavailable(table) {
 
 function makeTableAvailable(tableId) {
   restaurant.TableState.forEach((table) => {
-    if (tableId == table.id) {
+    if (tableId == table.Id) {
       table.Active = false;
       table.NumberOfPeople = 0;
       table.Check = 0;
@@ -36,4 +36,10 @@ function makeTableAvailable(tableId) {
   tableCard.classList.add("available");
 
   initialize();
+}
+
+function refreshPage() {
+  // let initializationScript = document.getElementById("initialization-script");
+  // initializationScript.remove();
+  // document.getElementsByTagName("body")[0].appendChild(initializationScript);
 }

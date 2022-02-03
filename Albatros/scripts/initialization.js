@@ -109,66 +109,103 @@ const restaurant = {
   numberOfTablesInADay() {
     //suma svih rezervacija
     let brojRezervacija = this.AllTables.length;
-    return brojRezervacija;
+    alert(`Broj danasnjih rezervacija je ${brojRezervacija}`);
   },
 
   averagePrice() {
     //prosjecna cijena narucenih i gotovih narucenih jela
-    let brojJela = this.AllTables.reduce(
-      (accumulator, table) =>
-        (accumulator +=
-          table.OrderedDishes.ReadyMeals.length +
-          table.OrderedDishes.CustomMeals.length),
-      0
-    );
-    let prosjecnaCijena = this.profitOfTheDay / brojJela;
+    let brojJela = 0;
 
-    return prosjecnaCijena;
+    this.AllTables.forEach(
+      (table) =>
+        (brojJela +=
+          table.OrderedDishes.ReadyMeals.length +
+          table.OrderedDishes.CustomMeals.length)
+    );
+
+    if (brojJela === 0) {
+      return;
+    }
+    let prosjecnaCijena = this.profitOfTheDay() / brojJela;
+
+    alert(`Prosjecna cijena svih jela je ${prosjecnaCijena}`);
   },
 
   profitOfTheDay() {
     let profit = 0;
 
     this.AllTables.forEach((table) => {
-      profit += table.OrderedDishes.ReadyMeals.reduce(
-        (accumulator, dish) => (accumulator += dish.Price)
-      );
-
-      profit += table.OrderedDishes.CustomMeals.reduce(
-        (accumulator, dish) => (accumulator += dish.Price)
-      );
+      table.OrderedDishes.ReadyMeals.forEach((meal) => (profit += meal.Price));
+      table.OrderedDishes.CustomMeals.forEach((meal) => (profit += meal.Cost));
     });
 
     return profit;
   },
 
-  mostOrdered() {},
+  mostOrdered() {
+    let mealsCounter = [];
+    this.Menu.ReadyMeals.forEach((meal) => {
+      mealsCounter[meal.Id - 1] = [meal, 0];
+      this.AllTables.forEach((table) => {
+        table.OrderedDishes.ReadyMeals.forEach((orderedMeal) => {
+          if (orderedMeal.Name === meal.Name) {
+            mealsCounter[meal.Id - 1][1]++;
+          }
+        });
+      });
+    });
 
-  leastOrdered() {},
+    let max;
+    mealsCounter.forEach((mealCounter) => {
+      if (mealCounter[0].Id === 1 || mealCounter[1] > max[1]) {
+        max = mealCounter;
+      }
+    });
+
+    alert(`Najcesce naruceno jelo je ${max[0].Name}`);
+  },
+
+  leastOrdered() {
+    let mealsCounter = [];
+    this.Menu.ReadyMeals.forEach((meal) => {
+      mealsCounter[meal.Id - 1] = [meal, 0];
+      this.AllTables.forEach((table) => {
+        table.OrderedDishes.ReadyMeals.forEach((orderedMeal) => {
+          if (orderedMeal.Name === meal.Name) {
+            mealsCounter[meal.Id - 1][1]++;
+          }
+        });
+      });
+    });
+
+    let min;
+    mealsCounter.forEach((mealCounter) => {
+      if (mealCounter[0].Id === 1 || mealCounter[1] < min[1]) {
+        min = mealCounter;
+      }
+    });
+
+    alert(`Najrjedje naruceno jelo je ${min[0].Name}`);
+  },
 
   customDishes() {
     //broj narucenih custom disheva, prosjecnu cijenu, najcesci sastojak, najrjedji sastojak
-    let allCustomDishes = this.Menu.CustomMeals;
-    let brojNarucenih = allCustomDishes.length;
-    let prosjecnaCijena =
-      allCustomDishes.reduce(
-        (accumulator, dish) => (accumulator += dish.Price)
-      ) / brojNarucenih;
-    let najcesci;
-    let najrjedji;
+    let brojCustomDisheva;
+    let prosjecnaCijena;
 
-    //e sad
-
-    return [prosjecnaCijena, najcesci, najrjedji];
+    alert(
+      `Kupljeno je ${brojCustomDisheva} cusotm disheva\nProsjecna cijena:${prosjecnaCijena}`
+    );
   },
 
   report() {
-    this.numberOfTablesInADay();
-    this.averagePrice();
-    this.profitOfTheDay();
-    this.mostOrdered();
-    this.leastOrdered();
-    this.customDishes();
+    // this.numberOfTablesInADay();
+    // alert(`Danasnji profit: ${this.profitOfTheDay}`);
+    // this.averagePrice();
+    // this.mostOrdered();
+    // this.leastOrdered();
+    // this.customDishes();
+    // refreshPage();
   },
 };
 
