@@ -128,7 +128,7 @@ const restaurant = {
     }
     let prosjecnaCijena = this.profitOfTheDay() / brojJela;
 
-    alert(`Prosjecna cijena svih jela je ${prosjecnaCijena}`);
+    alert(`Prosjecna cijena svih jela je ${prosjecnaCijena} HRK`);
   },
 
   profitOfTheDay() {
@@ -190,22 +190,38 @@ const restaurant = {
 
   customDishes() {
     //broj narucenih custom disheva, prosjecnu cijenu, najcesci sastojak, najrjedji sastojak
-    let brojCustomDisheva;
-    let prosjecnaCijena;
+    let brojCustomDisheva = 0;
+    let prosjecnaCijena = 0;
+
+    this.AllTables.forEach(
+      (table) => (brojCustomDisheva += table.OrderedDishes.CustomMeals.length)
+    );
+
+    if (brojCustomDisheva === 0) {
+      return;
+    }
+
+    this.AllTables.forEach((table) =>
+      table.OrderedDishes.CustomMeals.forEach(
+        (meal) => (prosjecnaCijena += meal.Cost)
+      )
+    );
+
+    prosjecnaCijena /= brojCustomDisheva;
 
     alert(
-      `Kupljeno je ${brojCustomDisheva} cusotm disheva\nProsjecna cijena:${prosjecnaCijena}`
+      `Kupljeno je ${brojCustomDisheva} custom disheva\nNjihova prosjecna cijena: ${prosjecnaCijena} HRK`
     );
   },
 
   report() {
-    // this.numberOfTablesInADay();
-    // alert(`Danasnji profit: ${this.profitOfTheDay}`);
-    // this.averagePrice();
-    // this.mostOrdered();
-    // this.leastOrdered();
-    // this.customDishes();
-    // refreshPage();
+    this.numberOfTablesInADay();
+    alert(`Danasnji profit: ${this.profitOfTheDay()} HRK`);
+    this.averagePrice();
+    this.mostOrdered();
+    this.leastOrdered();
+    this.customDishes();
+    refreshPage();
   },
 };
 

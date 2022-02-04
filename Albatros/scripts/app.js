@@ -39,7 +39,8 @@ function makeTableAvailable(tableId) {
 }
 
 function refreshPage() {
-  // let initializationScript = document.getElementById("initialization-script");
-  // initializationScript.remove();
-  // document.getElementsByTagName("body")[0].appendChild(initializationScript);
+  restaurant.AllTables = [];
+  restaurant.Menu.CustomMeals = [];
+  restaurant.TableState.forEach((table) => makeTableAvailable(table.Id));
+  initialize();
 }
